@@ -26,3 +26,8 @@ Sigue estos pasos para ejecutar el pipeline en tu computadora:
    ```bash
    git clone [https://github.com/TU_USUARIO/Pharma-Radar-2.0.git](https://github.com/TU_USUARIO/Pharma-Radar-2.0.git)
    cd Pharma-Radar-2.0
+   ## 🚀 Future Work & Scalability
+While the core data engineering pipeline (MVP) is fully functional, the next iteration of Pharma Radar will focus on scaling and usability:
+* **UI/UX Integration:** Connecting the backend Python pipeline to a front-end application (designed in Figma and built with frameworks like Flutter) to allow healthcare professionals to easily query drug signals.
+* **Relational Database Schema:** Migrating the processed CSV outputs into a robust SQL database architecture to support complex entity-relationship querying across all three data tiers.
+* **Data Visualization Dashboards:** Implementing data visualization libraries to dynamically graph the frequency of informal social complaints against FDA regulatory reports.
