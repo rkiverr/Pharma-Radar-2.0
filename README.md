@@ -65,11 +65,3 @@ Tier 3 Integration: Developing the full data parser for FDA AEMS ASCII quarterly
 
 
 ---
-
-### Los Commits Rápidos
-Guarda tu archivo `README.md` en VS Code, abre la terminal y lanza estos comandos para que Rodo ya pueda ver la nueva versión:
-
-```powershell
-git add README.md
-git commit -m "Docs: Updates README with foolproof setup instructions and data acquisition steps"
-git push origin main
