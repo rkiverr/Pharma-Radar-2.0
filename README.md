@@ -1,33 +1,75 @@
-# 💊 Pharma Radar - Pipeline de Farmacovigilancia
+Markdown
+# 💊 Pharma Radar: Advanced Pharmacovigilance Pipeline
 
-Pharma Radar es un sistema de extracción y análisis de datos diseñado para detectar discrepancias entre los efectos adversos oficiales de medicamentos y los síntomas reportados por usuarios en plataformas digitales.
+## 📖 Project Overview
+Pharma Radar is an automated data engineering pipeline designed to modernize pharmacovigilance by triangulating official adverse drug reactions (ADRs) with real-world patient anecdotes.
 
-Este proyecto nació originalmente como parte del FACMED UANL - Harvard Health Systems Innovation Hackathon 2026.
+## ⚠️ Important Note on Data
+Due to Reddit API restrictions (403 errors), Tier 2 currently relies on a static Data Lake strategy. You **must** manually download the raw social data before running the pipeline.
 
-## 🎯 El Problema
-La farmacovigilancia tradicional depende de reportes médicos formales, lo que puede causar retrasos en la detección de efectos secundarios emergentes. Mientras tanto, los pacientes frecuentemente reportan sus síntomas en tiempo real utilizando lenguaje informal en redes sociales o foros.
+## 🛠️ Setup & Installation
+Follow these exact steps to run the project locally.
 
-## 🚀 La Solución
-Pharma Radar automatiza el monitoreo cruzando dos fuentes de información utilizando algoritmos de similitud de texto (*Fuzzy Matching*):
-1.  **Datos Oficiales:** Extracción automatizada de estudios y efectos adversos desde la API oficial de `ClinicalTrials.gov`.
-2.  **Escucha Social:** Análisis de reportes de pacientes (procesamiento de lenguaje natural sobre datos informales).
-
-## 🛠️ Tecnologías y Arquitectura
-*   **Lenguaje:** Python 3.x
-*   **Extracción de Datos:** `requests` (Consumo de APIs REST).
-*   **Procesamiento de Datos:** `pandas` (Limpieza, transformación y estructuración de DataFrames).
-*   **Algoritmo de Similitud:** `thefuzz` / `python-Levenshtein` (Cálculo de distancia de Levenshtein para empatar terminología médica con lenguaje coloquial).
-
-## ⚙️ Configuración e Instalación (Desarrollo Local)
-
-Sigue estos pasos para ejecutar el pipeline en tu computadora:
-
-1. **Clona el repositorio:**
+1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/TU_USUARIO/Pharma-Radar-2.0.git](https://github.com/TU_USUARIO/Pharma-Radar-2.0.git)
-   cd Pharma-Radar-2.0
-   ## 🚀 Future Work & Scalability
-While the core data engineering pipeline (MVP) is fully functional, the next iteration of Pharma Radar will focus on scaling and usability:
-* **UI/UX Integration:** Connecting the backend Python pipeline to a front-end application (designed in Figma and built with frameworks like Flutter) to allow healthcare professionals to easily query drug signals.
-* **Relational Database Schema:** Migrating the processed CSV outputs into a robust SQL database architecture to support complex entity-relationship querying across all three data tiers.
-* **Data Visualization Dashboards:** Implementing data visualization libraries to dynamically graph the frequency of informal social complaints against FDA regulatory reports.
+   git clone <your-repo-url>
+   cd pharma-radar
+Create and activate a virtual environment:
+
+Windows:
+
+Bash
+python -m venv venv
+.\venv\Scripts\activate
+Mac/Linux:
+
+Bash
+python3 -m venv venv
+source venv/bin/activate
+Install the required dependencies:
+
+Bash
+pip install -r requirements.txt
+📥 Data Acquisition (Crucial Step)
+Before running the code, you need to populate the raw data folder:
+
+Go to Kaggle and download the "WebMD Drug Reviews Dataset".
+
+Extract the downloaded .csv archive.
+
+Rename the file to webmd_reviews.csv and place it strictly inside the data/raw/ directory.
+
+🚀 How to Run the Pipeline
+You do not need to execute the extraction or cleaning scripts individually. We have a master orchestrator that handles the entire flow.
+
+Simply run:
+
+Bash
+python src/main_pipeline.py
+This script will automatically:
+
+Tier 1: Extract theoretical clinical data.
+
+Tier 2: Clean and standardize the WebMD dataset.
+
+Core Engine: Run the Fuzzy Matching algorithm to translate informal language into formal medical symptoms.
+
+Tier 3: Prepare the architecture for FDA AEMS regulatory parsing.
+
+All processed outputs and matches will be generated and saved in the data/processed/ folder.
+
+🗺️ Next Steps (Roadmap)
+UI/UX Dashboard: Implementing a Streamlit web interface to visualize the raw and processed data seamlessly, replacing raw CSV navigation.
+
+Tier 3 Integration: Developing the full data parser for FDA AEMS ASCII quarterly files.
+
+
+---
+
+### Los Commits Rápidos
+Guarda tu archivo `README.md` en VS Code, abre la terminal y lanza estos comandos para que Rodo ya pueda ver la nueva versión:
+
+```powershell
+git add README.md
+git commit -m "Docs: Updates README with foolproof setup instructions and data acquisition steps"
+git push origin main
